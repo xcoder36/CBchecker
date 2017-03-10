@@ -1,28 +1,27 @@
 <?php
 require_once ('Data.php');
 class Controller {
-    private static function checknumber ($number) {
-        if (is_numeric($number) == false) { // on regarde qu'il y a que des chiffres
+    private static function checknumber ($number) { // verification des numéro de la carte
+        if (is_numeric($number) == false) { // on vérifie qu'il y a que des chiffres
             return false;
-        } elseif (strlen($number) != 16 ) { // si il n'y a pas 16 chiffres
+        } elseif (strlen($number) != 16 ) { // et qu'il y a bien 16 chiffres
             return false;
         }
-        return true; // on retourne que tout est OK
+        return true; // si les tests sont passé on retourne que tout est OK
     }
 
-    private static function checkcvv($cvv)  // Permet d'extraire le contenu d'une balise DOM
+    private static function checkcvv($cvv)  // vérification de la CVV
     {
         if (is_numeric($cvv) == false) { // on regarde qu'il y a que des chiffres
             return false;
-        } elseif (strlen($cvv) != 3 ) { // si il n'y a pas 3 chiffres
+        } elseif (strlen($cvv) != 3 ) { // et qu'il y a bien 3 chiffres
             return false;
         }
-        return true; // on retourne que tout est OK
+        return true; // si les tests sont passé on retourne que tout est OK
 
     }
 
-    // Permet d'extraire chaque mot d'une phrase pour les mettre dans un array.
-    private static function checkdate($month, $year)
+    private static function checkdate($month, $year) // vérification de la date de validité de la carte
     {
 
         if (is_numeric($month) == false && is_numeric($year) == false) { // on regarde si le mois et l'année sont bien des chiffre
@@ -32,12 +31,11 @@ class Controller {
             return false;
         } elseif (strlen($year) != 4 ) { // On regarde si l'année fait bien 4 chiffres
             return false;
-        }elseif ($year < date("Y") ) { // On regarde si l'année fait bien 4 chiffres
+        }elseif ($year < date("Y") ) { // On regarde si l'année est pas inferieure a l'année actuelle
             return false;
         }
 
-        //on check si la carte est toujours valide)
-        if ($year == date("Y"))
+        if ($year == date("Y")) // si l'année est la même que l'année en cours, on vérifie le mois
         {
             if ($year < date('n'))
             {
@@ -46,11 +44,11 @@ class Controller {
 
         }
 
-        return true; // on retourne que tout est OK
+        return true; // si les tests sont passé on retourne que tout est OK
     }
 
-    //supprime une balise et son contenu
-    public static function checkCB ($number, $cvv,$month, $year,$price)
+
+    public static function checkCB ($number, $cvv,$month, $year,$price) // le programme qui est appelé 
     {
         if (self::checknumber($number))
         {
