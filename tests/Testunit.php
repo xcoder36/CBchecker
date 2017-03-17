@@ -1,6 +1,6 @@
 <?php
 
-require '../Controller.php';
+require 'Controller.php';
 
 class Testunit extends PHPUnit_Framework_TestCase
 {
