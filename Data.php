@@ -76,11 +76,11 @@ class Data {
             if ($solde > $price) {
                 //on soustrait l'argent
                 $solde = $solde[0] - $price;
-                try {
+                if ($solde*10 >= $price){
                     $bdd->exec('UPDATE account SET Cash = ' . $solde . ' WHERE Number = ' . $number . '');
                     self::getinfo($number, $bdd);
                     return true;
-                } catch (Exception $e) {
+                } else {
                     return false;
                 }
             }
