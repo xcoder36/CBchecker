@@ -2,7 +2,8 @@
 
 require '../controller.php';
 
-class unittest extends PHPUnit_Framework_TestCase {
+class Testunit extends PHPUnit_Framework_TestCase
+{
 
     public $controller;
 
