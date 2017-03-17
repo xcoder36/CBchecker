@@ -10,6 +10,15 @@ class Controller {
         return true; // si les tests sont passé on retourne que tout est OK
     }
 
+    private static function checkprice ($price) { // verification du prix
+        if (is_numeric($price) == false) { // on vérifie qu'il y a que des chiffres
+            return false;
+        } else{
+            return true; // si les tests sont passé on retourne que tout est OK
+        }
+
+    }
+
     private static function checkcvv($cvv)  // vérification de la CVV
     {
         if (is_numeric($cvv) == false) { // on regarde qu'il y a que des chiffres
@@ -56,18 +65,26 @@ class Controller {
             {
                 if (self::checkdate($month, $year) )
                 {
-                    if (Data::payment($number,$price) == false)
-                    {
-                        echo "Montant insufisant";
+                    if (self::checkprice($price)) {
+                        if (Data::payment($number, $price) == false) {
+                            echo "Montant insufisant";
+                            return "Montant insufisant";
+                        }
+                    } else {
+                        echo "erreur prix";
+                        return "erreur prix";
                     }
                 } else {
                     echo "erreur date";
+                    return "erreur date";
                 }
             } else {
                 echo "CVV non valide";
+                return "CVV non valide";
             }
         } else {
             echo "Nombre non valide";
+            return "Nombre non valide";
         }
     }
 }

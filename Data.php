@@ -1,7 +1,7 @@
 <?php
 class Data {
 
-    private static function connect ($number) {
+    public static function connect ($number) {
         try
         {
             $bdd = new PDO('mysql:host=localhost;charset=utf8', 'root', '');
@@ -27,7 +27,7 @@ class Data {
         return $bdd;
     }
 
-    private static function createnewuser($number, $bdd)  // regarde combien d'argent
+    public static function createnewuser($number, $bdd)  // regarde combien d'argent
     {
         $search = 0;
         $reponse = $bdd->query("SELECT Number FROM account WHERE Number = '$number'");
@@ -73,14 +73,14 @@ class Data {
             // on regarde si l'argent est suffisant
 
             $solde = self::getcash($number, $bdd);
-            if ($solde > $price) {
+            if ($solde*5 >= $price) {
                 //on soustrait l'argent
                 $solde = $solde[0] - $price;
-                if ($solde*10 >= $price){
+                try {
                     $bdd->exec('UPDATE account SET Cash = ' . $solde . ' WHERE Number = ' . $number . '');
                     self::getinfo($number, $bdd);
                     return true;
-                } else {
+                } catch (Exception $e) {
                     return false;
                 }
             }
