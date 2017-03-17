@@ -7,7 +7,7 @@
          stopOnFailure="false"
          SyntaxCheck="true">
     <testsuites>
-        <testsuite name="Test suite">
+        <testsuite name="Testunit">
             <directory>.</directory>
         </testsuite>
     </testsuites>

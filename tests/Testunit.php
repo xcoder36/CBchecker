@@ -24,7 +24,7 @@ class Testunit extends PHPUnit_Framework_TestCase
     }
 
     public function testspecialcharschecknumber(){
-        $this->assertEquals("Nombre non valide",$this->controller->checkcb('?./§,;:!ù^*µ$£@&'), 123,12, 2050,10));
+        $this->assertEquals("Nombre non valide",$this->controller->checkcb('?./§,;:!ù^*µ$£@&', 123,12, 2050,10));
     }
 
     public function testmixedcharschecknumber(){
@@ -112,7 +112,7 @@ class Testunit extends PHPUnit_Framework_TestCase
 
     public function testspecialcharscheckprice(){
         $nbaleatoirecb = rand (1111111111111111 , 9999999999999999 );
-        $this->assertEquals("Nombre non valide",$this->controller->checkcb($nbaleatoirecb), 123,12, 2050,'1!'));
+        $this->assertEquals("Nombre non valide",$this->controller->checkcb($nbaleatoirecb, 123,12, 2050,'1!'));
     }
 
     public function testmixedcharscheckprice(){
