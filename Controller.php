@@ -33,13 +33,13 @@ class Controller {
     private static function checkdate($month, $year) // vérification de la date de validité de la carte
     {
 
-        if (is_numeric($month) == false) { // on regarde si le mois et l'année sont bien des chiffre
+        if (is_numeric($month) == false) { // on regarde si le mois est bien un chiffre
             return false;
-        } elseif (is_numeric($year) == false) { // on regarde si le mois et l'année sont bien des chiffre
+        } elseif (is_numeric($year) == false) { // on regarde si l'année est bien un chiffre
             return false;
-        } elseif ($month < 1) { // on regarde si le mois est compris entre 1 et 12
+        } elseif ($month < 1) { // on regarde si le mois est superieur a 0
             return false;
-        } elseif ($month > 12) { // on regarde si le mois est compris entre 1 et 12
+        } elseif ($month > 13) { // on regarde si le mois est inferieur a 13
             return false;
         } elseif (strlen($year) != 4 ) { // On regarde si l'année fait bien 4 chiffres
             return false;
@@ -62,14 +62,14 @@ class Controller {
 
     public static function checkCB ($number, $cvv,$month, $year,$price) // le programme qui est appelé 
     {
-        if (self::checknumber($number))
+        if (self::checknumber($number)) // vérification des chiffres présent sur la carte
         {
-            if (self::checkcvv($cvv))
+            if (self::checkcvv($cvv)) // vérification de la CVV
             {
-                if (self::checkdate($month, $year) )
+                if (self::checkdate($month, $year) ) // vérification de la date
                 {
-                    if (self::checkprice($price)) {
-                        if (Data::payment($number, $price) == false) {
+                    if (self::checkprice($price)) { // vérification du prix
+                        if (Data::payment($number, $price) == false) { // vérifie le montant et procède au paiement
                             echo "Montant insufisant";
                             return "Montant insufisant";
                         }

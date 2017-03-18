@@ -1,20 +1,20 @@
 <?php
 class Data {
 
-    public static function connect ($number) {
-        try
+    public static function connect ($number) { // connexion a la base de donnée
+        try // tentative de connexion
         {
             $bdd = new PDO('mysql:host=localhost;charset=utf8', 'root', '');
             return $bdd;
         }
-        catch (Exception $e)
+        catch (Exception $e) // sinon erreur
         {
         echo "Erreur de connexion a la base de donnee";
         return "Erreur de connexion a la base de donnee";
         }
     }
 
-    private static function init ($bdd){
+    private static function init ($bdd){ // on crée la base de donnée si elle est existe pas
 
         $bdd->query("CREATE DATABASE IF NOT EXISTS CBchecker");
         $bdd->query("use CBchecker");
@@ -28,29 +28,29 @@ class Data {
         return $bdd;
     }
 
-    public static function createnewuser($number, $bdd)  // regarde combien d'argent
+    public static function createnewuser($number, $bdd)  // si on tape un utilisateur qui existe pas on le crée (debug uniquement)
     {
         $search = 0;
-        $reponse = $bdd->query("SELECT Number FROM account WHERE Number = '$number'");
+        $reponse = $bdd->query("SELECT Number FROM account WHERE Number = '$number'"); // on verifie si l'utilisateur existe
         while ($donnees = $reponse->fetch())
         {
             $search = $search + 1;
         }
-        if ($search == 0)
+        if ($search == 0) // si il existe pas on le crée avec 300 sur lec ompte
         {
             $bdd->exec('INSERT INTO account(`Number`, Cash) VALUES('.$number.', 300)');
             echo "coucou";
         }
     }
 
-    private static function getcash($number, $bdd)  // regarde combien d'argent
+    private static function getcash($number, $bdd)  // recupere l'argent sur le compte
     {
         $reponse = $bdd->query('SELECT Cash FROM account WHERE Number = '.$number.'');
         $donnee = $reponse->fetch();
         return $donnee;
     }
 
-    private static function getinfo($number, $bdd)  // regarde combien d'argent
+    private static function getinfo($number, $bdd)  // recupere les information d'un client et les affiches a l'ecran
     {
         $reponse = $bdd->query('SELECT * FROM account WHERE Number = '.$number.'');
         while ($donnee = $reponse->fetch())
@@ -62,12 +62,12 @@ class Data {
     }
 
     //supprime une balise et son contenu
-    public static function payment ($number, $price)
+    public static function payment ($number, $price) // le paiement est déclenché
     {
         $bdd = self::connect($number);
         if ($bdd != "Erreur de connexion a la base de donnee") { // si la connexion est OK
-            $bdd = self::init($bdd);
-            // si l'utilisateur existe pas, on le crée
+            $bdd = self::init($bdd); // on initialise la base la base de donnée
+            // si l'utilisateur existe pas, on le crée (debug uniquement)
             self::createnewuser($number,$bdd);
 
             // on regarde si l'argent est suffisant
@@ -80,7 +80,7 @@ class Data {
                     $bdd->exec('UPDATE account SET Cash = ' . $solde . ' WHERE Number = ' . $number . '');
                     self::getinfo($number, $bdd);
                     return true;
-                } catch (Exception $e) {
+                } catch (Exception $e) { // si on y arrive pas on informe que ca n'as pas fonctionne
                     return false;
                 }
             }
