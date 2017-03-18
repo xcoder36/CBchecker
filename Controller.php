@@ -49,13 +49,12 @@ class Controller {
 
         if ($year == date("Y")) // si l'année est la même que l'année en cours, on vérifie le mois
         {
-            if ($year < date('n'))
+            if ($month < date('n'))
             {
                 return false;
             }
 
         }
-        echo "okpourici";
 
         return true; // si les tests sont passé on retourne que tout est OK
     }
