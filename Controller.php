@@ -37,8 +37,9 @@ class Controller {
             return false;
         } elseif (is_numeric($year) == false) { // on regarde si le mois et l'année sont bien des chiffre
             return false;
-        } elseif ($month < 1 AND $month > 12) { // on regarde si le mois est compris entre 1 et 12
-            echo $month;
+        } elseif ($month < 1) { // on regarde si le mois est compris entre 1 et 12
+            return false;
+        } elseif ($month > 12) { // on regarde si le mois est compris entre 1 et 12
             return false;
         } elseif (strlen($year) != 4 ) { // On regarde si l'année fait bien 4 chiffres
             return false;
