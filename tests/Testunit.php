@@ -107,21 +107,21 @@ class Testunit extends PHPUnit_Framework_TestCase
 
     public function testcharscheckprice(){
         $nbaleatoirecb = rand (1111111111111111 , 9999999999999999 );
-        $this->assertEquals("Nombre non valide",$this->controller->checkcb($nbaleatoirecb, 123,12, 2050,'ab'));
+        $this->assertEquals("erreur prix",$this->controller->checkcb($nbaleatoirecb, 123,12, 2050,'ab'));
     }
 
     public function testspecialcharscheckprice(){
         $nbaleatoirecb = rand (1111111111111111 , 9999999999999999 );
-        $this->assertEquals("Nombre non valide",$this->controller->checkcb($nbaleatoirecb, 123,12, 2050,'1!'));
+        $this->assertEquals("erreur prix",$this->controller->checkcb($nbaleatoirecb, 123,12, 2050,'1!'));
     }
 
     public function testmixedcharscheckprice(){
         $nbaleatoirecb = rand (1111111111111111 , 9999999999999999 );
-        $this->assertEquals("Nombre non valide",$this->controller->checkcb($nbaleatoirecb, 123,12, 2050,'150'));
+        $this->assertEquals("erreur prix",$this->controller->checkcb($nbaleatoirecb, 123,12, 2050,'150'));
     }
 
     public function testoverpricecheckprice(){
         $nbaleatoirecb = rand (1111111111111111 , 9999999999999999 );
-        $this->assertEquals("Nombre non valide",$this->controller->checkcb($nbaleatoirecb, 123,12, 2050,250));
+        $this->assertEquals("erreur prix",$this->controller->checkcb($nbaleatoirecb, 123,12, 2050,250));
     }
 }
