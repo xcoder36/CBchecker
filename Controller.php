@@ -33,7 +33,9 @@ class Controller {
     private static function checkdate($month, $year) // vérification de la date de validité de la carte
     {
 
-        if (is_numeric($month) == false && is_numeric($year) == false) { // on regarde si le mois et l'année sont bien des chiffre
+        if (is_numeric($month) == false) { // on regarde si le mois et l'année sont bien des chiffre
+            return false;
+        } elseif (is_numeric($year) == false) { // on regarde si le mois et l'année sont bien des chiffre
             return false;
         } elseif ($month < 1 AND $month > 12) { // on regarde si le mois est compris entre 1 et 12
             echo $month;
@@ -52,6 +54,7 @@ class Controller {
             }
 
         }
+        echo "okpourici";
 
         return true; // si les tests sont passé on retourne que tout est OK
     }
