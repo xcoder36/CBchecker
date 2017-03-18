@@ -9,7 +9,8 @@ class Data {
         }
         catch (Exception $e)
         {
-        return "";
+        echo "Erreur de connexion a la base de donnee";
+        return "Erreur de connexion a la base de donnee";
         }
     }
 
@@ -64,9 +65,8 @@ class Data {
     public static function payment ($number, $price)
     {
         $bdd = self::connect($number);
-        $bdd = self::init($bdd);
-        if ($bdd != "") { // si la connexion est OK
-
+        if ($bdd != "Erreur de connexion a la base de donnee") { // si la connexion est OK
+            $bdd = self::init($bdd);
             // si l'utilisateur existe pas, on le crée
             self::createnewuser($number,$bdd);
 
