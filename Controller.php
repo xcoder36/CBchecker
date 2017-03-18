@@ -3,6 +3,7 @@ require_once ('Data.php');
 class Controller {
     private static function checknumber ($number) { // verification des numéro de la carte
         if (is_numeric($number) == false) { // on vérifie qu'il y a que des chiffres
+            echo "testici";
             return false;
         } elseif (strlen($number) != 16 ) { // et qu'il y a bien 16 chiffres
             return false;
