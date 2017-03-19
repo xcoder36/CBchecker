@@ -3,7 +3,7 @@ $I = new AcceptanceTester($scenario);
 $I->am('user');
 $I->wantTo('login to website');
 $I->lookForwardTo('access all website features');
-$I->amOnPage('index.php');
+$I->amOnPage('../index.php');
 $I->fillField('number','davert');
 $I->fillField('CVV','qwerty');
 $I->fillField('Month','qwerty');
