@@ -11,7 +11,7 @@
         <p>Mois d'expiration : <input type="text" name="Month" /></p>
         <p>Année d'expiration : <input type="text" name="Year" /></p>
         <p>Prix : <input type="text" name="price" /></p>
-        <p><input type="submit" value="OK"></p>
+        <p><input type="submit" value="OK" name="OK"></p>
     </form>
 </body>
 </html>

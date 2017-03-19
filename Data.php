@@ -4,7 +4,7 @@ class Data {
     public static function connect ($number) { // connexion a la base de donnée
         try // tentative de connexion
         {
-            $bdd = new PDO('mysql:host=localhost;charset=utf8', 'root', '');
+            $bdd = new PDO('mysql:host=mysql-cbchecker.alwaysdata.net;charset=utf8', 'cbchecker', '');
             return $bdd;
         }
         catch (Exception $e) // sinon erreur
@@ -16,8 +16,8 @@ class Data {
 
     private static function init ($bdd){ // on crée la base de donnée si elle est existe pas
 
-        $bdd->query("CREATE DATABASE IF NOT EXISTS CBchecker");
-        $bdd->query("use CBchecker");
+        $bdd->query("CREATE DATABASE IF NOT EXISTS cbchecker_devops");
+        $bdd->query("use cbchecker_devops");
         $sql = "CREATE TABLE `account` (
       `id` int(11) NOT NULL PRIMARY KEY,
       `Number` text NOT NULL,
