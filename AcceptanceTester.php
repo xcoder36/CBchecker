@@ -26,7 +26,7 @@ class AcceptanceTester extends \Codeception\Actor
         $I->am('user');
         $I->wantTo('login to website');
         $I->lookForwardTo('access all website features');
-        $I->amOnPage('../index.php');
+        $I->amOnPage('index.php');
         $I->fillField('number','1234567890123456');
         $I->fillField('CVV','123');
         $I->fillField('Month','05');
