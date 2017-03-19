@@ -2,5 +2,5 @@ class_name: AcceptanceTester
 modules:
     enabled:
         - PhpBrowser:
-            url: https://cbcheckerdevops.herokuapp.com/
+            url: 'https://cbcheckerdevops.herokuapp.com'
         - \Helper\Acceptance
