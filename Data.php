@@ -83,6 +83,7 @@ class Data {
                 } catch (Exception $e) { // si on y arrive pas on informe que ca n'as pas fonctionne
                     return false;
                 }
+                echo "fin du test";
             }
         }
     }
