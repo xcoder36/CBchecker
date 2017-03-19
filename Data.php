@@ -4,7 +4,7 @@ class Data {
     public static function connect ($number) { // connexion a la base de donnée
         try // tentative de connexion
         {
-            $bdd = new PDO('mysql:host=mysql-cbchecker.alwaysdata.net;charset=utf8', 'cbchecker', '');
+            $bdd = new PDO('mysql:host=mysql-cbchecker.alwaysdata.net;charset=utf8', 'cbchecker', '11071990');
             return $bdd;
         }
         catch (Exception $e) // sinon erreur
@@ -73,7 +73,7 @@ class Data {
             // on regarde si l'argent est suffisant
 
             $solde = self::getcash($number, $bdd);
-            if ($solde*5 >= $price) {
+            if ($solde[0]*5 > $price) {
                 //on soustrait l'argent
                 $solde = $solde[0] - $price;
                 try {
