@@ -39,7 +39,6 @@ class Data {
         if ($search == 0) // si il existe pas on le crée avec 300 sur lec ompte
         {
             $bdd->exec('INSERT INTO account(`Number`, Cash) VALUES('.$number.', 300)');
-            echo "coucou";
         }
     }
 
@@ -66,6 +65,7 @@ class Data {
     {
         $bdd = self::connect($number);
         if ($bdd != "Erreur de connexion a la base de donnee") { // si la connexion est OK
+            echo "resultat : <br/>";
             $bdd = self::init($bdd); // on initialise la base la base de donnée
             // si l'utilisateur existe pas, on le crée (debug uniquement)
             self::createnewuser($number,$bdd);
