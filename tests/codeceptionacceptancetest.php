@@ -10,4 +10,4 @@ $I->fillField('Month','qwerty');
 $I->fillField('Year','qwerty');
 $I->fillField('price','qwerty');
 $I->click('OK');
-$I->see('resultat :');
+$I->see('resultat :'); 
