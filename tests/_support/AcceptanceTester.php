@@ -33,6 +33,6 @@ class AcceptanceTester extends \Codeception\Actor
         $I->fillField('Year','2028');
         $I->fillField('price','0');
         $I->click('OK');
-        $I->see('resultat :'); 
+        $I->see('resultat :');
     }
 }
